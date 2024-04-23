@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Container, Stack, Navbar, Row, Col } from "react-bootstrap";
+import { Nav, Container, Stack, Navbar } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
 
 
@@ -15,6 +15,9 @@ export const SiteNavbar = () => {
                         </Nav>
                 </Container>
             </Navbar>
+            <Stack gap={3} className="col-md-10 mx-auto mt-3">
+                <Outlet />
+            </Stack>
         </>
     )
 }

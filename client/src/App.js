@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { SiteNavbar } from './Navbar';
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Navbar />}>
-        
+      <Route path='/' element={<SiteNavbar />}>
+
       </Route>
     </Routes>
     </BrowserRouter>

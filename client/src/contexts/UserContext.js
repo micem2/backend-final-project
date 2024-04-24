@@ -18,7 +18,7 @@ export const UserProvider = (props) => {
     function loginUser(user, pass) {
         let credentials = { user, pass };
 
-        return axios.post(baseUrl + '/login', credentials)
+        return axios.post(apiBaseUrl + '/login', credentials)
         .then(response => {
             localStorage.setItem('authToken', response.data.token)
             return new Promise(resolve => resolve(response.data));

@@ -15,7 +15,7 @@ export const Register = () => {
         
         registerUser(username, password).then(() => {
             window.alert('Thank you for registering. Please log in to use the account.');
-            navigate('/signin');
+            navigate('/login');
         }).catch(err => {
             console.log(err);
             window.alert('Registeration failed. Error: ' + err);

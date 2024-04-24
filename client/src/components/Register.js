@@ -7,13 +7,13 @@ export const Register = () => {
     const [ username, setUsername ] = useState("");
     const [ password, setPassword ] = useState("");
 
-    let { createUser } = useContext(UserContext);
+    let { registerUser } = useContext(UserContext);
     let navigate = useNavigate();
 
     function handleSubmit(event) {
         event.preventDefault();
         
-        createUser(username, password).then(() => {
+        registerUser(username, password).then(() => {
             window.alert('Thank you for registering. Please log in to use the account.');
             navigate('/signin');
         }).catch(err => {

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { PostContext } from "../contexts/PostContext";
 import { UserContext } from "../contexts/UserContext";
+import { Outlet } from "react-router-dom";
 
 export const Home = () => {
     const [post, setPost] = useState({
@@ -33,21 +34,23 @@ export const Home = () => {
 
     function handleSubmit(event) {
         event.preventDefault();
-
         addPost(post)
-        .catch(err => {
-            console.log(err);
-            window.alert('Failed to post. Error: ' + err);
-        });
+            .catch(err => {
+                console.log(err);
+                window.alert('Failed to post. Error: ' + err);
+            });
     }
 
     return (
-        <Form className="align-self-start" onSubmit={handleSubmit}>
-            <Form.Group className="mb-3">
-                <Form.Label>What's on your mind?</Form.Label>
-                <Form.Control type="text" name="description" value={post.description} onChange={handleChange} />
-            </Form.Group>
-            <Button type="submit">Post</Button>
-        </Form>
+        <>
+            <Form className="align-self-start" onSubmit={handleSubmit}>
+                <Form.Group className="mb-3">
+                    <Form.Label>What's on your mind?</Form.Label>
+                    <Form.Control type="text" name="description" value={post.description} onChange={handleChange} />
+                </Form.Group>
+                <Button type="submit">Post</Button>
+            </Form>
+            <Outlet />
+        </>
     )
 }

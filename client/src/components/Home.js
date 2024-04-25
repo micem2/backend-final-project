@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { PostContext } from "../contexts/PostContext";
 import { UserContext } from "../contexts/UserContext";
 import { Outlet } from "react-router-dom";
+import { PostList } from "./PostList";
 
 export const Home = () => {
     const [post, setPost] = useState({
@@ -39,6 +40,11 @@ export const Home = () => {
                 console.log(err);
                 window.alert('Failed to post. Error: ' + err);
             });
+        setPost(prevPost => ({
+            ...prevPost,
+            description: ""
+        }));
+        console.log(post);
     }
 
     return (
@@ -50,7 +56,7 @@ export const Home = () => {
                 </Form.Group>
                 <Button type="submit" variant="success">Post</Button>
             </Form>
-            <Outlet />
+            <PostList />
         </>
     )
 }

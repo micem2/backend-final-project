@@ -48,7 +48,7 @@ export const Home = () => {
                     <Form.Label>What's on your mind?</Form.Label>
                     <Form.Control type="text" name="description" value={post.description} onChange={handleChange} />
                 </Form.Group>
-                <Button type="submit">Post</Button>
+                <Button type="submit" variant="success">Post</Button>
             </Form>
             <Outlet />
         </>

@@ -6,18 +6,20 @@ import { Register } from './components/Register';
 import { Login } from './components/Login';
 import { Home } from './components/Home';
 import { PostProvider } from './contexts/PostContext';
+import { PostList } from './components/PostList';
 
 function App() {
   return (
     <UserProvider>
       <PostProvider>
         <BrowserRouter>
+          <SiteNavbar />
           <Routes>
-            <Route path='/' element={<SiteNavbar />}>
-              <Route index element={<Home />} />
-              <Route path='login' element={<Login />} />
-              <Route path='register' element={<Register />} />
+            <Route path="/" element={<Home />}>
+              <Route index element={<PostList />} />
             </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </BrowserRouter>
       </PostProvider>

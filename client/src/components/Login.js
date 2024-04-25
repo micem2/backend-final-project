@@ -33,7 +33,7 @@ export const Login = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} />
             </Form.Group>
-            <Button type="submit">Register</Button>
+            <Button type="submit" variant="success">Login</Button>
             <p>Don't have an account? <a href="/register">Register here</a></p>
         </Form>
     )

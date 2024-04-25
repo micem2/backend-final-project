@@ -33,7 +33,7 @@ export const Register = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} />
             </Form.Group>
-            <Button type="submit">Register</Button>
+            <Button type="submit" variant="success">Register</Button>
         </Form>
     )
 };

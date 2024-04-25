@@ -1,5 +1,6 @@
 import React from "react";
 import { PostContext } from "../contexts/PostContext";
+import { Card } from "react-bootstrap";
 
 export const PostList = () => {
     return (
@@ -7,11 +8,15 @@ export const PostList = () => {
             {
                 ({ post }) => {
                     return <div>
-                        {post.map((p) => {
+                        {post.toReversed().map((p) => {
                             return (
                                 <div key={p.id}>
-                                    <h3>{p.name}</h3>
-                                    <p>{p.description}</p>
+                                    <Card className="align-self-start">
+                                        <Card.Body>
+                                            <Card.Title>{p.name}</Card.Title>
+                                            <Card.Text>{p.description}</Card.Text>
+                                        </Card.Body>
+                                    </Card>
                                 </div>
                             )
                         })}

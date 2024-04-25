@@ -25,8 +25,19 @@ export const UserProvider = (props) => {
         });
     };
 
+    function getUsername() {
+        let myHeaders = {
+            token: localStorage.getItem('authToken')
+        }
+
+        return axios.post(apiBaseUrl + '/finduser', myHeaders)
+        .then(response => {
+            return new Promise(resolve => resolve(response.data));
+        })
+    }
+
     return (
-        <UserContext.Provider value={{ registerUser, loginUser }}>
+        <UserContext.Provider value={{ registerUser, loginUser, getUsername }}>
             { props.children }
         </UserContext.Provider>
     )

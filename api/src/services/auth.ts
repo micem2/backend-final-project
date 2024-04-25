@@ -19,7 +19,7 @@ export const signUserToken = async (user: IUser) => {
     let token = jwt.sign(
         { userId: user._id },
         secret,
-        { expiresIn: '1hr' }
+        { expiresIn: '999hr' },
     );
     return token;
 }
@@ -33,6 +33,27 @@ export const verifyUser = async (req: Request) => {
         try {
             let decoded: any = await jwt.verify(token, secret);
             return await User.findById(decoded.userId);
+        }
+        catch (err) {
+            return null;
+        }
+    }
+    else {
+        return null;
+    }
+}
+
+export const decodeUsername = async (token: string) => {
+    if (token) {
+        try {
+            let decoded: any = await jwt.verify(token, secret);
+            const user = await User.findById(decoded.userId);
+
+            if (user) {
+                return user.username;
+            } else {
+                return null;
+            }
         }
         catch (err) {
             return null;

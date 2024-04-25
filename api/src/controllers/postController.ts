@@ -16,7 +16,7 @@ export const getOnePost: RequestHandler = async (req, res, next) => {
 
 export const addPost: RequestHandler = async (req, res, next) => {
     let user: IUser | null = await verifyUser(req);
-
+    console.log(req.body);
     if (!user) {
         return res.status(403).send();
     };
@@ -32,6 +32,7 @@ export const addPost: RequestHandler = async (req, res, next) => {
     }
     catch (err) {
         res.status(500).send(err);
+        console.log(err);
     };
 };
 

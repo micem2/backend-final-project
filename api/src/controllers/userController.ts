@@ -56,6 +56,30 @@ export const getOneUser: RequestHandler = async (req, res, next) => {
     res.status(200).json(user);
 }
 
+export const editUser: RequestHandler = async (req, res, next) => {
+    let verifiedUser: IUser | null = await verifyUser(req);
+
+    if (!verifiedUser) {
+        return res.status(400).json('Failed to verify user');
+    };
+
+    let itemId = req.body._id;
+    const updatedUser: IUser = new User({
+        _id: itemId,
+        username: req.body.username,
+        country: req.body.country,
+        gender: req.body.gender
+    });
+    console.log(req);
+
+    try {
+        await User.findByIdAndUpdate(itemId, { $set: updatedUser });
+        res.status(200).json(updatedUser);
+    } catch (err) {
+        res.status(401).json('Failed to update user');
+    };
+}
+
 export const returnUser: RequestHandler = async (req, res, next) => {
     let ourToken = req.body.token;
 

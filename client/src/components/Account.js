@@ -13,7 +13,7 @@ export const Account = () => {
         gender: ""
     });
 
-    let { getUser } = useContext(UserContext);
+    let { getUser, editUser } = useContext(UserContext);
     let navigate = useNavigate();
     let { id, username, country, gender } = user
 
@@ -31,10 +31,23 @@ export const Account = () => {
         });
     };
 
+    function handleSubmit(event) {
+        event.preventDefault();
+        
+        editUser(user).then(() => {
+            window.alert('Profile has been updated');
+            console.log(user);
+        })
+        .catch(err => {
+            console.log(err);
+            window.alert('Failed update profile. Error: ' + err);
+        })
+    }
+
     return (
         <>
         <h2>Account Profile for {username}</h2>
-        <Form className="align-self-start">
+        <Form className="align-self-start" onSubmit={handleSubmit}>
             <Form.Group className="mb-3" >
                 <Form.Label>Country</Form.Label>
                 <Form.Control type="text" name="country" value={country} onChange={handleChange} />

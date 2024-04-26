@@ -25,17 +25,23 @@ export const Account = () => {
         fetch();
     })
 
+    function handleChange(event) {
+        setUser((prevValue) => {
+            return { ...prevValue, [event.target.name]: event.target.value }
+        });
+    };
+
     return (
         <>
         <h2>Account Profile for {username}</h2>
         <Form className="align-self-start">
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" >
                 <Form.Label>Country</Form.Label>
-                <Form.Control type="text" name="country" value={country} />
+                <Form.Control type="text" name="country" value={country} onChange={handleChange} />
             </Form.Group>
             <Form.Group className="mb-3">
                 <Form.Label>Gender</Form.Label>
-                <Form.Control type="text" name="gender" value={gender} />
+                <Form.Control type="text" name="gender" value={gender} onChange={handleChange} />
             </Form.Group>
             <Button type="submit" variant="success">Save</Button>
         </Form>

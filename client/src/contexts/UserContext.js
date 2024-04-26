@@ -28,35 +28,53 @@ export const UserProvider = (props) => {
     function getUser(id) {
         return axios.get(apiBaseUrl + '/' + id).then(response =>
             new Promise((resolve) => resolve(response.data))
-        )
-    }
+        );
+    };
+
+    function editUser(user) {
+        let myHeaders = {
+            Authorization: "Bearer " + localStorage.getItem('authToken')
+        };
+
+        return axios.put(apiBaseUrl + '/' + user._id, user, { headers: myHeaders })
+            .then(response => {
+                return new Promise(resolve => resolve(response.data));
+            });
+    };
 
     function getUsername() {
         let myHeaders = {
             token: localStorage.getItem('authToken')
-        }
+        };
 
         return axios.post(apiBaseUrl + '/finduser', myHeaders)
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
-            })
-    }
+            });
+    };
 
     function getUserId() {
         let myHeaders = {
             token: localStorage.getItem('authToken')
-        }
+        };
 
         return axios.post(apiBaseUrl + '/findid', myHeaders)
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
-            })
-    }
+            });
+    };
 
 
     return (
-        <UserContext.Provider value={{ registerUser, loginUser, getUser, getUsername, getUserId }}>
+        <UserContext.Provider value={{
+            registerUser,
+            loginUser,
+            getUser,
+            editUser,
+            getUsername,
+            getUserId
+        }}>
             {props.children}
         </UserContext.Provider>
-    )
+    );
 };

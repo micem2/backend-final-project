@@ -50,6 +50,12 @@ export const loginUser: RequestHandler = async (req, res, next) => {
     }
 }
 
+export const getOneUser: RequestHandler = async (req, res, next) => {
+    let itemId = req.params.id;
+    let user = await User.findById(itemId);
+    res.status(200).json(user);
+}
+
 export const returnUser: RequestHandler = async (req, res, next) => {
     let ourToken = req.body.token;
 

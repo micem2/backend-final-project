@@ -44,15 +44,14 @@ export const Home = () => {
             ...prevPost,
             description: ""
         }));
-        console.log(post);
     }
 
     return (
         <>
-            <Form className="align-self-start" onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                     <Form.Label>What's on your mind?</Form.Label>
-                    <Form.Control type="text" name="description" value={post.description} onChange={handleChange} />
+                    <Form.Control as="textarea" type="text" name="description" value={post.description} onChange={handleChange} />
                 </Form.Group>
                 <Button type="submit" variant="success">Post</Button>
             </Form>

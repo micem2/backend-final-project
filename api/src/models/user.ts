@@ -3,6 +3,8 @@ import { Document, Schema, Model, model } from 'mongoose';
 interface IUser extends Document {
     username: string;
     password: string;
+    country: string;
+    gender: string;
 }
 
 const userSchema: Schema = new Schema({
@@ -12,6 +14,14 @@ const userSchema: Schema = new Schema({
         unique: true
     },
     password: {
+        type: String,
+        required: true
+    },
+    country: {
+        type: String,
+        required: true
+    },
+    gender: {
         type: String,
         required: true
     }

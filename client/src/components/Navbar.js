@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Nav, Container, Stack, Navbar } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 
 export const SiteNavbar = () => {
+    const [userId, setUserId] = useState("");
+
+    const { getUserId } = useContext(UserContext);
+
+    useEffect(() => {
+        const fetchUserId = async () => {
+            try {
+                const retrievedInfo = await getUserId();
+                setUserId(retrievedInfo.decodedId);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchUserId();
+    }, []);
+
     return (
         <>
             <Navbar bg="success" variant="dark">
@@ -11,7 +28,7 @@ export const SiteNavbar = () => {
                         <Navbar.Brand href="/">Feeds</Navbar.Brand>
                         <Nav className="justify-content-end">
                             <Link to="/login" className="nav-link">Login</Link>
-                            <Link to="/settings" className="nav-link">Account</Link>
+                            <Link to={"/account/" + userId} className="nav-link">Account</Link>
                         </Nav>
                 </Container>
             </Navbar>

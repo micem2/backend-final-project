@@ -3,7 +3,6 @@ import { Document, Schema, Model, model } from 'mongoose';
 interface IPost extends Document {
     name: string;
     description: string;
-    price: number;
 }
 
 const postSchema: Schema = new Schema({

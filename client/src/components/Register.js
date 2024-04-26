@@ -6,6 +6,8 @@ import { Form, Button } from "react-bootstrap";
 export const Register = () => {
     const [ username, setUsername ] = useState("");
     const [ password, setPassword ] = useState("");
+    const [ country, setCountry ] = useState("");
+    const [ gender, setGender ] = useState("");
 
     let { registerUser } = useContext(UserContext);
     let navigate = useNavigate();
@@ -13,7 +15,7 @@ export const Register = () => {
     function handleSubmit(event) {
         event.preventDefault();
         
-        registerUser(username, password).then(() => {
+        registerUser(username, password, country, gender).then(() => {
             window.alert('Thank you for registering. Please log in to use the account.');
             navigate('/login');
         }).catch(err => {
@@ -32,6 +34,14 @@ export const Register = () => {
             <Form.Group className="mb-3">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} />
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label>Country</Form.Label>
+                <Form.Control type="text" name="country" value={country} onChange={e => setCountry(e.target.value)} />
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label>Gender</Form.Label>
+                <Form.Control type="text" name="gender" value={gender} onChange={e => setGender(e.target.value)} />
             </Form.Group>
             <Button type="submit" variant="success">Register</Button>
         </Form>

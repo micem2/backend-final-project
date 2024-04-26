@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import { User, IUser } from "../models/user";
-import { comparePasswords, hashPassword, signUserToken, verifyUser, decodeUsername } from "../services/auth";
+import { comparePasswords, hashPassword, signUserToken, verifyUser, decodeUsername, decodeUserId } from "../services/auth";
 
 export const createUser: RequestHandler = async (req, res, next) => {
     const newUser: IUser = new User({
@@ -66,6 +66,28 @@ export const returnUser: RequestHandler = async (req, res, next) => {
     try {
         if (decodedUsername) {
             res.status(200).json({ decodedUsername });
+        };
+    } catch (err) {
+        res.status(500).send(err);
+    };
+}
+
+export const returnUserId: RequestHandler = async (req, res, next) => {
+    let ourToken = req.body.token;
+
+    if (!ourToken) {
+        res.status(400).json('No token provided');
+    };
+
+    const decodedId = await decodeUserId(ourToken);
+
+    if (!decodedId) {
+        res.status(401).json('Unable to decode username. Bad token?');
+    };
+
+    try {
+        if (decodedId) {
+            res.status(200).json({ decodedId });
         };
     } catch (err) {
         res.status(500).send(err);

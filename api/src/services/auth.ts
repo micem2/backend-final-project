@@ -63,3 +63,22 @@ export const decodeUsername = async (token: string) => {
         return null;
     }
 }
+
+export const decodeUserId = async (token: string) => {
+    if (token) {
+        try {
+            let decoded: any = await jwt.verify(token, secret);
+            if (decoded.userId) {
+                return decoded.userId;
+            } else {
+                return null;
+            }
+        }
+        catch (err) {
+            return null;
+        }
+    }
+    else {
+        return null;
+    }
+}

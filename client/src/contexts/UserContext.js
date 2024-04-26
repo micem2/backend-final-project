@@ -6,8 +6,8 @@ export const UserContext = createContext();
 export const UserProvider = (props) => {
     const apiBaseUrl = "http://localhost:3000/api/users";
 
-    function registerUser(username, password) {
-        let credentials = { username, password };
+    function registerUser(username, password, country, gender) {
+        let credentials = { username, password, country, gender };
 
         return axios.post(apiBaseUrl, credentials)
         .then(response => {

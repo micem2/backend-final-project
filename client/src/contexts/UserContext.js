@@ -10,20 +10,26 @@ export const UserProvider = (props) => {
         let credentials = { username, password, country, gender };
 
         return axios.post(apiBaseUrl, credentials)
-        .then(response => {
-            return new Promise(resolve => resolve(response.data));
-        });
+            .then(response => {
+                return new Promise(resolve => resolve(response.data));
+            });
     };
 
     function loginUser(username, password) {
         let credentials = { username, password };
 
         return axios.post(apiBaseUrl + '/login', credentials)
-        .then(response => {
-            localStorage.setItem('authToken', response.data.token)
-            return new Promise(resolve => resolve(response.data));
-        });
+            .then(response => {
+                localStorage.setItem('authToken', response.data.token)
+                return new Promise(resolve => resolve(response.data));
+            });
     };
+
+    function getUser(id) {
+        return axios.get(apiBaseUrl + '/' + id).then(response =>
+            new Promise((resolve) => resolve(response.data))
+        )
+    }
 
     function getUsername() {
         let myHeaders = {
@@ -31,9 +37,9 @@ export const UserProvider = (props) => {
         }
 
         return axios.post(apiBaseUrl + '/finduser', myHeaders)
-        .then(response => {
-            return new Promise(resolve => resolve(response.data));
-        })
+            .then(response => {
+                return new Promise(resolve => resolve(response.data));
+            })
     }
 
     function getUserId() {
@@ -42,14 +48,15 @@ export const UserProvider = (props) => {
         }
 
         return axios.post(apiBaseUrl + '/findid', myHeaders)
-        .then(response => {
-            return new Promise(resolve => resolve(response.data));
-        })
+            .then(response => {
+                return new Promise(resolve => resolve(response.data));
+            })
     }
 
+
     return (
-        <UserContext.Provider value={{ registerUser, loginUser, getUsername, getUserId }}>
-            { props.children }
+        <UserContext.Provider value={{ registerUser, loginUser, getUser, getUsername, getUserId }}>
+            {props.children}
         </UserContext.Provider>
     )
 };

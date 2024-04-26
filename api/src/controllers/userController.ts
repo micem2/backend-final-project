@@ -5,11 +5,13 @@ import { comparePasswords, hashPassword, signUserToken, verifyUser, decodeUserna
 export const createUser: RequestHandler = async (req, res, next) => {
     const newUser: IUser = new User({
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        country: req.body.country,
+        gender: req.body.gender
     });
 
     try {
-        if (newUser.username && newUser.password) {
+        if (newUser.username && newUser.password && newUser.country && newUser.gender) {
             let hashedPassword = await hashPassword(newUser.password);
             newUser.password = hashedPassword;
             let created = await newUser.save();

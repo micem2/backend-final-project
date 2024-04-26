@@ -7,6 +7,7 @@ import { Login } from './components/Login';
 import { Home } from './components/Home';
 import { PostProvider } from './contexts/PostContext';
 import { PostList } from './components/PostList';
+import { Account } from './components/Account';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path='/account/:Id' element={<Account />} />
             </Route>
           </Routes>
         </BrowserRouter>

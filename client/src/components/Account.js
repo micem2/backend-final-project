@@ -16,7 +16,7 @@ export const Account = () => {
 
     let navigate = useNavigate();
     let { getUser, editUser } = useContext(UserContext);
-    
+
     let { id, username, country, gender } = user
 
     useEffect(() => {
@@ -35,15 +35,15 @@ export const Account = () => {
 
     function handleSubmit(event) {
         event.preventDefault();
-        
+
         editUser(user).then(() => {
             window.alert('Profile has been updated');
             console.log(user);
         })
-        .catch(err => {
-            console.log(err);
-            window.alert('Failed update profile. Error: ' + err);
-        })
+            .catch(err => {
+                console.log(err);
+                window.alert('Failed update profile. Error: ' + err);
+            })
     }
 
     function logoutUser() {
@@ -53,25 +53,22 @@ export const Account = () => {
     }
     return (
         <>
-        <Stack className="horizontal">
-        <h2>Profile for {username}</h2>
-        <Form className="align-self-start" onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" >
-                <Form.Label>Country</Form.Label>
-                <Form.Control type="text" name="country" value={country} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-3">
-                <Form.Label>Gender</Form.Label>
-                <Form.Control type="text" name="gender" value={gender} onChange={handleChange} />
-            </Form.Group>
-            <Button type="submit" variant="success">Save</Button>
-        </Form>
-        
-        <a href="#" onClick={logoutUser}>Logout</a>
-        </Stack>
-        
-            <AccountPostList name={user.username}/>
-            
+            <h2>Profile for {username}</h2>
+            <Form className="align-self-start" onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" >
+                    <Form.Label>Country</Form.Label>
+                    <Form.Control type="text" name="country" value={country} onChange={handleChange} />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Gender</Form.Label>
+                    <Form.Control type="text" name="gender" value={gender} onChange={handleChange} />
+                </Form.Group>
+                <Button type="submit" variant="success">Save</Button>
+            </Form>
+            <Form className="align-self-start" onSubmit={logoutUser}>
+                <Button variant="danger">Logout</Button>
+            </Form>
+            <AccountPostList name={user.username} />
         </>
     );
 };

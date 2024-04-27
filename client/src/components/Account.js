@@ -14,8 +14,9 @@ export const Account = () => {
         gender: ""
     });
 
-    let { getUser, editUser } = useContext(UserContext);
     let navigate = useNavigate();
+    let { getUser, editUser } = useContext(UserContext);
+    
     let { id, username, country, gender } = user
 
     useEffect(() => {
@@ -44,8 +45,15 @@ export const Account = () => {
             window.alert('Failed update profile. Error: ' + err);
         })
     }
+
+    function logoutUser() {
+        navigate('/login');
+        localStorage.removeItem("authToken");
+        window.location.reload();
+    }
     return (
         <>
+        <Stack className="horizontal">
         <h2>Profile for {username}</h2>
         <Form className="align-self-start" onSubmit={handleSubmit}>
             <Form.Group className="mb-3" >
@@ -58,7 +66,12 @@ export const Account = () => {
             </Form.Group>
             <Button type="submit" variant="success">Save</Button>
         </Form>
+        
+        <a href="#" onClick={logoutUser}>Logout</a>
+        </Stack>
+        
             <AccountPostList name={user.username}/>
+            
         </>
     );
 };

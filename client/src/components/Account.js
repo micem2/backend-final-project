@@ -66,7 +66,7 @@ export const Account = () => {
                 <Button type="submit" variant="success">Save</Button>
             </Form>
             <Form className="align-self-start" onSubmit={logoutUser}>
-                <Button variant="danger">Logout</Button>
+                <Button variant="danger" type="submit">Logout</Button>
             </Form>
             <AccountPostList name={user.username} />
         </>

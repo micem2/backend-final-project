@@ -61,13 +61,27 @@ export const PostProvider = (props) => {
         );
     };
 
+    // I know using post for this is not ideal. I plan to fix this later.
+    function getFilteredPost(name) {
+        console.log(name)
+        let myHeaders = {
+            name: name
+        };
+
+        return axios.post(baseUrl + '/filter', myHeaders)
+            .then(response => {
+                return new Promise(resolve => resolve(response.data));
+            });
+    }
+
     return (
         <PostContext.Provider value={{
             post,
             getPost,
             addPost,
             editPost,
-            deletePost
+            deletePost,
+            getFilteredPost
         }}>
             {props.children}
         </PostContext.Provider>

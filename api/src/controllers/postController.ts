@@ -14,6 +14,7 @@ export const getOnePost: RequestHandler = async (req, res, next) => {
     res.status(200).json(post);
 };
 
+// I know using post for this situation is not ideal. I plan to fix this later
 export const getPostByUsername: RequestHandler = async (req, res, next) => {
     let name = req.body.name;
     let foundPosts = await Post.find({ name });

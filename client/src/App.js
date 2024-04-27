@@ -6,9 +6,9 @@ import { Register } from './components/Register';
 import { Login } from './components/Login';
 import { Home } from './components/Home';
 import { PostProvider } from './contexts/PostContext';
-import { PostList } from './components/PostList';
 import { Account } from './components/Account';
 import { NotLoggedIn } from './components/NotLoggedIn';
+import { EditPost } from './components/EditPost';
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path='/account' element={<NotLoggedIn />} />
               <Route path='/account/:Id' element={<Account />} />
+              <Route path='/post/edit/:Id' element={<EditPost />} />
             </Route>
           </Routes>
         </BrowserRouter>

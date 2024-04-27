@@ -16,6 +16,7 @@ export const Login = () => {
         
         loginUser(username, password).then(() => {
             navigate('/');
+            window.location.reload();
         }).catch(err => {
             console.log(err);
             window.alert('Login failed. Error: ' + err);

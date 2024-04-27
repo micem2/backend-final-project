@@ -4,17 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 
 export const Register = () => {
-    const [ username, setUsername ] = useState("");
-    const [ password, setPassword ] = useState("");
-    const [ country, setCountry ] = useState("");
-    const [ gender, setGender ] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [country, setCountry] = useState("");
+    const [gender, setGender] = useState("");
 
     let { registerUser } = useContext(UserContext);
     let navigate = useNavigate();
 
     function handleSubmit(event) {
         event.preventDefault();
-        
+
         registerUser(username, password, country, gender).then(() => {
             window.alert('Thank you for registering. Please log in to use the account.');
             navigate('/login');
@@ -23,6 +23,12 @@ export const Register = () => {
             window.alert('Registeration failed. Error: ' + err);
         });
     };
+
+    function showTos() {
+        window.alert("Let's be honest");
+        window.alert("Who actually reads the terms of service when registering?");
+        window.alert("You could be agreeing to something that you definitely don't want to");
+    }
 
     return (
         <Form className="align-self-start" onSubmit={handleSubmit}>
@@ -42,6 +48,9 @@ export const Register = () => {
             <Form.Group className="mb-3">
                 <Form.Label>Gender</Form.Label>
                 <Form.Control type="text" name="gender" value={gender} onChange={e => setGender(e.target.value)} />
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Check type="checkbox" label={<span>I agree to the <a href="#" onClick={showTos}>terms of service</a></span>}></Form.Check>
             </Form.Group>
             <Button type="submit" variant="success">Register</Button>
         </Form>

@@ -14,6 +14,12 @@ export const getOnePost: RequestHandler = async (req, res, next) => {
     res.status(200).json(post);
 };
 
+export const getPostByUsername: RequestHandler = async (req, res, next) => {
+    let name = req.body.name;
+    let foundPosts = await Post.find({ name });
+    res.status(200).json(foundPosts);
+}
+
 export const addPost: RequestHandler = async (req, res, next) => {
     let user: IUser | null = await verifyUser(req);
     console.log(req.body);

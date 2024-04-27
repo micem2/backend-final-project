@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Stack } from "react-bootstrap";
 import { PostContext } from "../contexts/PostContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import { AccountPostList } from "./AccountPostList";
 
 export const Account = () => {
     let params = useParams();
@@ -43,10 +44,9 @@ export const Account = () => {
             window.alert('Failed update profile. Error: ' + err);
         })
     }
-
     return (
         <>
-        <h2>Account Profile for {username}</h2>
+        <h2>Profile for {username}</h2>
         <Form className="align-self-start" onSubmit={handleSubmit}>
             <Form.Group className="mb-3" >
                 <Form.Label>Country</Form.Label>
@@ -58,6 +58,7 @@ export const Account = () => {
             </Form.Group>
             <Button type="submit" variant="success">Save</Button>
         </Form>
+            <AccountPostList name={user.username}/>
         </>
     );
 };

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { PostContext } from "../contexts/PostContext";
+import { Link } from "react-router-dom";
 
 export const AccountPostList = (props) => {
     const [post, setPost] = useState([])
@@ -29,6 +30,7 @@ export const AccountPostList = (props) => {
                     <Card.Body>
                         <Card.Title>{post.name}</Card.Title>
                         <Card.Text>{post.description}</Card.Text>
+                        <Link to={"/post/edit/" + post._id}>Edit</Link>
                     </Card.Body>
                 </Card>
             </div>

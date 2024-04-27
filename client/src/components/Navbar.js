@@ -17,9 +17,12 @@ export const SiteNavbar = () => {
             } catch (err) {
                 console.log(err);
             }
+        };
+    
+        if (localStorage.getItem("authToken")) {
+            fetchUserId();
         }
-        fetchUserId();
-    }, []);
+    }, [localStorage.getItem("authToken")]);
 
     return (
         <>

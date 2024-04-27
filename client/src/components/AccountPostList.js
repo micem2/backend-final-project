@@ -16,8 +16,9 @@ export const AccountPostList = (props) => {
             } catch (err) {
                 console.log(err);
                 window.alert('Failed to retrieve posts. Error: ' + err);
-            }
-        }
+            };
+        };
+        
         fetchFilteredPosts();
     }, [props.name]);
 
@@ -36,5 +37,5 @@ export const AccountPostList = (props) => {
             </div>
         ))}
         </>
-    )
-}
+    );
+};

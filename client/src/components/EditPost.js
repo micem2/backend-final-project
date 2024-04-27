@@ -9,7 +9,7 @@ export const EditPost = () => {
         id: params.Id,
         name: "",
         description: ""
-    })
+    });
 
     let { editPost, getPost, deletePost } = useContext(PostContext)
     let navigate = useNavigate();
@@ -21,13 +21,13 @@ export const EditPost = () => {
             await getPost(id).then((post) => setExistingPost(post))
         }
         fetch();
-    })
+    });
 
     function handleChange(event) {
         setExistingPost((prevValue) => {
             return { ...prevValue, [event.target.name]: event.target.value }
-        })
-    }
+        });
+    };
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -63,5 +63,5 @@ export const EditPost = () => {
                 <Button variant="danger" type="submit">Delete Post</Button>
             </Form>
         </>
-    )
-}
+    );
+};

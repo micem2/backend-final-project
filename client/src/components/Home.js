@@ -22,19 +22,19 @@ export const Home = () => {
             } catch (err) {
                 console.log(err);
                 window.alert('Failed to retrieve username. Error: ' + err);
-            }
+            };
         };
     
         if (localStorage.getItem("authToken")) {
             fetchUsername();
-        }
+        };
     }, [localStorage.getItem("authToken")]);
 
     function handleChange(event) {
         setPost((prevValue) => {
             return { ...prevValue, [event.target.name]: event.target.value }
-        })
-    }
+        });
+    };
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -47,7 +47,7 @@ export const Home = () => {
             ...prevPost,
             description: ""
         }));
-    }
+    };
 
     return (
         <>
@@ -60,5 +60,5 @@ export const Home = () => {
             </Form>
             <PostList />
         </>
-    )
-}
+    );
+};

@@ -25,7 +25,7 @@ export const Account = () => {
             await getUser(id).then((user) => setUser(user))
         }
         fetch();
-    })
+    });
 
     function handleChange(event) {
         setUser((prevValue) => {
@@ -43,14 +43,15 @@ export const Account = () => {
             .catch(err => {
                 console.log(err);
                 window.alert('Failed update profile. Error: ' + err);
-            })
-    }
+            });
+    };
 
     function logoutUser() {
         navigate('/login');
         localStorage.removeItem("authToken");
         window.location.reload();
-    }
+    };
+    
     return (
         <>
             <h2>Profile for {username}</h2>

@@ -23,9 +23,12 @@ export const Home = () => {
                 console.log(err);
                 window.alert('Failed to retrieve username. Error: ' + err);
             }
+        };
+    
+        if (localStorage.getItem("authToken")) {
+            fetchUsername();
         }
-        fetchUsername();
-    }, []);
+    }, [localStorage.getItem("authToken")]);
 
     function handleChange(event) {
         setPost((prevValue) => {
